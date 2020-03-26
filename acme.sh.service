@@ -1,0 +1,12 @@
+[Unit]
+Description=Renew Let's Encrypt Certificates
+After=network.target network-online.target nss-lookup.target
+Wants=network-online.target nss-lookup.target
+
+[Service]
+# If the version of systemd is 240 or above,  then uncommenting Type=simple and commenting out Type=exec
+#Type=exec
+Type=simple
+User=root
+ExecStart=/usr/bin/acme.sh --cron --home /etc/acme.sh
+Restart=on-failure 

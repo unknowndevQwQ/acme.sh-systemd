@@ -13,3 +13,21 @@ ExecStart=/usr/bin/acme.sh --cron --home /etc/acme.sh
 # acme.sh returns 2 when renewal is skipped (i.e. certs up to date)
 SuccessExitStatus=0 2
 Restart=on-failure
+
+# lock down system access
+# prohibit any operating system and configuration modification
+ProtectSystem=strict
+# create separate, new (and empty) /tmp and /var/tmp filesystems
+PrivateTmp=true
+# make /home directories inaccessible
+ProtectHome=true
+# turns off access to physical devices (/dev/...)
+PrivateDevices=true
+# make kernel settings (procfs and sysfs) read-only
+ProtectKernelTunables=true
+# make cgroups /sys/fs/cgroup read-only
+ProtectControlGroups=true
+
+# allow writing of acme directory
+#ReadWritePaths=/etc/acme.sh/
+# depending on log and entrypoint configuration, you may need to allow writing to other paths, too

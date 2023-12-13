@@ -1,9 +1,9 @@
 [Unit]
-Description=Bimonthly check for acme.sh(Let's Encrypt) renewals
+Description=Run acme.sh daily
 
 [Timer]
-OnCalendar=*-1/2-01 00:00:00
-Persistent=yes
+OnCalendar=*-*-* 00:00:00
+Persistent=true
 
 [Install]
 WantedBy=timers.target

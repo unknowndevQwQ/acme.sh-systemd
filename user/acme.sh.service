@@ -1,0 +1,17 @@
+[Unit]
+Description=Renew certificates acquired via acme.sh
+After=network.target network-online.target nss-lookup.target
+Wants=network-online.target nss-lookup.target
+Documentation=https://https://github.com/acmesh-official/acme.sh/wiki
+
+[Service]
+# If the version of systemd is 240 or above,  then uncommenting Type=simple and commenting out Type=exec
+#Type=exec
+Type=simple
+# The --home argument should be the location of the acme.sh configuration directory.
+# This is the user unit, by default there is no need to set the --home folder
+#ExecStart=/usr/bin/acme.sh --cron --home %h/.acme.sh
+ExecStart=/usr/bin/acme.sh --cron
+# acme.sh returns 2 when renewal is skipped (i.e. certs up to date)
+SuccessExitStatus=0 2
+Restart=on-failure

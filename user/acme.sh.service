@@ -2,7 +2,7 @@
 Description=Renew certificates acquired via acme.sh
 After=network.target network-online.target nss-lookup.target
 Wants=network-online.target nss-lookup.target
-Documentation=https://https://github.com/acmesh-official/acme.sh/wiki
+Documentation=https://github.com/acmesh-official/acme.sh/wiki
 
 [Service]
 # If the version of systemd is 240 or above,  then uncommenting Type=simple and commenting out Type=exec

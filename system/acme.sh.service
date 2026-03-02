@@ -14,6 +14,10 @@ ExecStart=/usr/bin/acme.sh --cron --home /etc/acme.sh
 SuccessExitStatus=0 2
 Restart=on-failure
 
+# allow writing of acme directory
+# depending on log and entrypoint configuration, you may need to allow writing to other paths, too
+ReadWritePaths=/etc/acme.sh /var/log/acme.sh
+
 # lock down system access
 # prohibit any operating system and configuration modification
 ProtectSystem=strict
@@ -27,7 +31,3 @@ PrivateDevices=true
 ProtectKernelTunables=true
 # make cgroups /sys/fs/cgroup read-only
 ProtectControlGroups=true
-
-# allow writing of acme directory
-#ReadWritePaths=/etc/acme.sh/
-# depending on log and entrypoint configuration, you may need to allow writing to other paths, too

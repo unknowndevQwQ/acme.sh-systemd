@@ -29,5 +29,10 @@ ProtectHome=true
 PrivateDevices=true
 # make kernel settings (procfs and sysfs) read-only
 ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
 # make cgroups /sys/fs/cgroup read-only
 ProtectControlGroups=true
+
+SystemCallFilter=~@module @mount @reboot @swap
+SystemCallErrorNumber=EPERM
